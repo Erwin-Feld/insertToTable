@@ -1,0 +1,35 @@
+
+
+
+<table mat-table [dataSource]="tableData$" class="mat-elevation-z8">
+  
+    <ng-container
+    matColumnDef="{{ column }}"
+    *ngFor="let column of tableColumnNames$ | async">
+    <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+    <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="tableColumnNames$ | async"></tr>
+
+  <!-- TODO if feature is active diseable this -->
+
+  <!-- add ngIf to detect if a component inside is active -->
+
+  <app-table-insert [tableData$]="tableData$" [tableColumnNames$]="tableColumnNames$"></app-table-insert>
+  
+
+<!-- If feature active diseable below part  -->
+<!-- diseable the below tr element with ngIf -->
+<ng-container *ngIf="false">
+  <tr 
+  mat-row
+  *matRowDef="let row; columns: tableColumnNames$ | async"
+  class="example-detail-row"
+></tr>
+
+</ng-container>
+  
+</table>
+
+
